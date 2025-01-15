@@ -38,7 +38,7 @@ body {
 }
 
 .navbar a span {
-    margin-top: 5px;
+    position: absolute;
 }
 
 .hidden {
