@@ -37,6 +37,10 @@ body {
     width: 20px;
 }
 
+.navbar a span {
+    margin-top: 5px;
+}
+
 .hidden {
     display: none; /* Hide the navbar by default */
 }
