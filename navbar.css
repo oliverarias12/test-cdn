@@ -1,7 +1,7 @@
 /* navbar.css */
 body {
-    font-family: 'Heebo', sans-serif;
-    src: url('Heebo-Regular.ttf');
+    font-family: "Heebo", sans-serif;
+    src: url("./Heebo-Regular.ttf");
 }
 
 #navbar {
@@ -33,10 +33,6 @@ body {
     width: 20px;
 }
 
-/* .navbar a:hover {
-    background-color: #444;
-} */
-
 .hidden {
     display: none; /* Hide the navbar by default */
 }
@@ -48,7 +44,3 @@ body {
     padding: 20px 20px;
     cursor: pointer;
 }
-
-/* #navbar-toggle:hover {
-    background-color: #444;
-} */
