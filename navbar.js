@@ -2,11 +2,11 @@
 (function() {
     const navbarData = [
         { href: 'https://suite.frontsteps.com/', text: 'Suite Manager', icon: './icons/suite-manager-icon.svg' },
-        { href: 'https://app.frontsteps.com', text: 'Community', icon: './icons/community-icon.svg' },
-        { href: 'frontstepscaliber://', text: 'Caliber', icon: './icons/caliber-icon.svg' },
-        { href: 'https://fspay-dashboard.frontsteps.com/', text: 'Payments', icon: './icons/payments-icon.svg' },
-        { href: 'https://community.dwellinglive.com/', text: 'Dwelling', icon: './icons/dwelling-icon.svg' },
-        { href: 'https://frontsteps.com/frontsteps-partners-integrations/', text: 'Verified Ambassadors', icon: './icons/verified-ambassadors-icon.svg' }
+        { href: 'https://app.frontsteps.com', text: 'Community', icon: 'https://github.com/oliverarias12/test-cdn/blob/9676c3ade4ec1c9f838417bdd0f568ec4af31781/icons/community-icon.svg' },
+        { href: 'frontstepscaliber://', text: 'Caliber', icon: 'https://github.com/oliverarias12/test-cdn/blob/9676c3ade4ec1c9f838417bdd0f568ec4af31781/icons/caliber.svg' },
+        { href: 'https://fspay-dashboard.frontsteps.com/', text: 'Payments', icon: 'https://github.com/oliverarias12/test-cdn/blob/9676c3ade4ec1c9f838417bdd0f568ec4af31781/icons/payments-icon.svg' },
+        { href: 'https://community.dwellinglive.com/', text: 'Dwelling', icon: 'https://github.com/oliverarias12/test-cdn/blob/9676c3ade4ec1c9f838417bdd0f568ec4af31781/icons/dwelling-icon.svg' },
+        { href: 'https://frontsteps.com/frontsteps-partners-integrations/', text: 'Verified Ambassadors', icon: 'icons/verified-ambassadors-icon.svg' }
     ];
 
     function createNavbar() {
@@ -17,15 +17,15 @@
             const a = document.createElement('a');
             a.href = link.href;
 
-            // // Create an icon element
-            // const icon = document.createElement('img');
-            // icon.src = link.icon; // Set the icon class
+            // Create an icon element
+            const icon = document.createElement('img');
+            icon.src = link.icon; // Set the icon class
 
             // Create a text node
             const textNode = document.createTextNode(` ${link.text}`); // Add space for better spacing
             
             // Append the icon and text to the anchor
-            a.appendChild(link.icon);
+            a.appendChild(icon);
             a.appendChild(textNode);
             navbar.appendChild(a);
         });
