@@ -17,15 +17,15 @@
             const a = document.createElement('a');
             a.href = link.href;
 
-            // Create an icon element
-            const icon = document.createElement('img');
-            icon.src = link.icon; // Set the icon class
+            // // Create an icon element
+            // const icon = document.createElement('img');
+            // icon.src = link.icon; // Set the icon class
 
             // Create a text node
             const textNode = document.createTextNode(` ${link.text}`); // Add space for better spacing
             
             // Append the icon and text to the anchor
-            a.appendChild(icon);
+            a.appendChild(link.icon);
             a.appendChild(textNode);
             navbar.appendChild(a);
         });
