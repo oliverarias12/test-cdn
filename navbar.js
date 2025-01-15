@@ -22,11 +22,13 @@
             icon.src = link.icon; // Set the icon class
 
             // Create a text node
-            const textNode = document.createTextNode(`<span class="link-name">${link.text}<span>`); // Add space for better spacing
+            const linkName = document.createElement('span');
+            linkName.innerText = link.text;
+            linkName.className = 'link-name';
             
             // Append the icon and text to the anchor
             a.appendChild(icon);
-            a.appendChild(textNode);
+            a.appendChild(linkName);
             navbar.appendChild(a);
         });
 
