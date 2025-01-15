@@ -1,12 +1,12 @@
 // navbar.js
 (function() {
     const navbarData = [
-        { href: 'https://suite.frontsteps.com/', text: 'Suite Manager', icon: 'icons/suite-manager-icon.svg' },
-        { href: 'https://app.frontsteps.com', text: 'Community', icon: 'icons/community-icon.svg' },
-        { href: 'frontstepscaliber://', text: 'Caliber', icon: 'icons/caliber-icon.svg' },
-        { href: 'https://fspay-dashboard.frontsteps.com/', text: 'Payments', icon: 'icons/payments-icon.svg' },
-        { href: 'https://community.dwellinglive.com/', text: 'Dwelling', icon: 'icons/dwelling-icon.svg' },
-        { href: 'https://frontsteps.com/frontsteps-partners-integrations/', text: 'Verified Ambassadors', icon: 'icons/verified-ambassadors-icon.svg' }
+        { href: 'https://suite.frontsteps.com/', text: 'Suite Manager', icon: '/icons/suite-manager-icon.svg' },
+        { href: 'https://app.frontsteps.com', text: 'Community', icon: '/icons/community-icon.svg' },
+        { href: 'frontstepscaliber://', text: 'Caliber', icon: '/icons/caliber-icon.svg' },
+        { href: 'https://fspay-dashboard.frontsteps.com/', text: 'Payments', icon: '/icons/payments-icon.svg' },
+        { href: 'https://community.dwellinglive.com/', text: 'Dwelling', icon: '/icons/dwelling-icon.svg' },
+        { href: 'https://frontsteps.com/frontsteps-partners-integrations/', text: 'Verified Ambassadors', icon: '/icons/verified-ambassadors-icon.svg' }
     ];
 
     function createNavbar() {
