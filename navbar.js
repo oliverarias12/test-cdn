@@ -18,8 +18,8 @@
             a.href = link.href;
 
             // Create an icon element
-            const icon = document.createElement('i');
-            icon.className = link.icon; // Set the icon class
+            const icon = document.createElement('img');
+            icon.src = link.icon; // Set the icon class
 
             // Create a text node
             const textNode = document.createTextNode(` ${link.text}`); // Add space for better spacing
