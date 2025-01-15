@@ -1,6 +1,7 @@
 /* navbar.css */
 body {
-    font-family: 'Heebo';
+    font-family: 'Heebo', sans-serif;
+    src: url('Heebo-Regular.ttf');
 }
 
 #navbar {
