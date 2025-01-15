@@ -1,0 +1,55 @@
+/* navbar.css */
+body {
+    font-family: Arial, sans-serif;
+}
+
+#navbar {
+    position: absolute;
+    top: 50px; /* Adjust based on button position */
+    right: 10px; /* Adjust based on your layout */
+    background-color: #15212F;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+}
+
+.navbar a {
+    color: #A9C2D6;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20.56px;
+    padding: 16px 12px 16px 12px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.navbar a i {
+    margin-right: 8px; /* Space between icon and text */
+    height: 20px;
+    width: 20px;
+}
+
+/* .navbar a:hover {
+    background-color: #444;
+} */
+
+.hidden {
+    display: none; /* Hide the navbar by default */
+}
+
+#navbar-toggle {
+    background-color: #15212F;
+    color: white;
+    border: none;
+    padding: 20px 20px;
+    cursor: pointer;
+}
+
+/* #navbar-toggle:hover {
+    background-color: #444;
+} */
