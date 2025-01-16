@@ -31,6 +31,10 @@ body {
     letter-spacing: 2px;
 }
 
+.navbar a:hover {
+    color: #FFFFFF;
+}
+
 .navbar a img {
     margin-right: 8px; /* Space between icon and text */
     height: 20px;
