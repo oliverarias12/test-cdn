@@ -131,7 +131,7 @@
 
         const link = document.getElementById('community');
         // Event listener for opening the community app
-        link.getElementById('community').addEventListener('click', function(event) {
+        link.addEventListener('click', function(event) {
             // Prevent the default action of the link
             event.preventDefault();
 
