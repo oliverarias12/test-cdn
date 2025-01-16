@@ -9,7 +9,7 @@
       },
       {
         id: 'community',
-        href: "https://app.frontsteps.com",
+        href: "https://app.frontsteps.com/auth/frontsteps_auth/callback?token=",
         mobileLinks: {
             app: 'com.everapps.evercondo.residents://',
             appStore: 'https://apps.apple.com/us/app/frontsteps-community/id1121372160',
@@ -20,19 +20,19 @@
       },
       {
         id: 'caliber',
-        href: "frontstepscaliber://",
+        href: "frontstepscaliber://?token=",
         text: "Caliber",
         icon: "https://oliverarias12.github.io/test-cdn/icons/caliber-icon.svg",
       },
       {
         id: 'payments',
-        href: "https://fspay-dashboard.frontsteps.com/",
+        href: "https://fspay-dashboard.frontsteps.com/?accessToken=",
         text: "Payments",
         icon: "https://oliverarias12.github.io/test-cdn/icons/payments-icon.svg",
       },
       {
         id: 'dwelling',
-        href: "https://community.dwellinglive.com/",
+        href: "https://community.dwellinglive.com/login.aspx?smToken=",
         text: "Dwelling",
         icon: "https://oliverarias12.github.io/test-cdn/icons/dwelling-icon.svg",
       },
@@ -77,6 +77,13 @@
                 a.appendChild(openInIcon);
 
                 a.href = link.mobileLinks ? link.mobileLinks.app : link.href;
+            } else {
+                // Add click event to append the access token
+                a.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent the default anchor behavior
+                    const tokenizedUrl = `${a.href}${localStorage.getItem('accessToken') ?? ''}`; // Append the token to the URL
+                    window.location.href = tokenizedUrl; // Navigate to the new URL with the token
+                });
             }
 
             // Append the icon and text to the anchor
