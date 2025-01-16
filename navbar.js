@@ -147,7 +147,7 @@
 
             // Start a timer to redirect after a certain duration
             const timeoutId = setTimeout(function() {
-                window.location.href = redirectUrl; // Redirect to another URL
+                window.open(redirectUrl, '_blank')
             }, 2500);
 
             // Open the original link in a new tab
@@ -159,7 +159,7 @@
                 clearTimeout(timeoutId);
             } else {
                 // If the new tab was blocked (e.g., by a popup blocker), redirect immediately
-                window.location.href = redirectUrl;
+                window.open(redirectUrl, '_blank')
             }
         });
     }
