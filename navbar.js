@@ -19,7 +19,8 @@
 
             // Create an icon element
             const icon = document.createElement('img');
-            icon.src = link.icon; // Set the icon class
+            icon.src = link.icon;
+            icon.className = 'product-icon';
 
             // Create a text node
             const linkName = document.createElement('span');
@@ -29,10 +30,26 @@
             // Append the icon and text to the anchor
             a.appendChild(icon);
             a.appendChild(linkName);
+
+            // Add open-in icon for mobile view
+            if (isMobile()) {
+                const openInIcon = document.createElement('img');
+                openInIcon.src = 'https://oliverarias12.github.io/test-cdn/icons/open-new-icon.svg';
+                openInIcon.className = 'open-new-icon';
+                a.appendChild(openInIcon);
+            }
+
             navbar.appendChild(a);
         });
 
         return navbar;
+    }
+
+    function isMobile() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
+        // Check for mobile devices
+        return /android|iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
     }
 
     // Append the navbar to the specified element
