@@ -52,7 +52,6 @@
             const a = document.createElement('a');
             a.id = link.id;
             a.href = link.href;
-            a.target = '_blank';
 
             // Create an icon element
             const icon = document.createElement('img');
@@ -82,7 +81,7 @@
                 a.addEventListener('click', (event) => {
                     event.preventDefault(); // Prevent the default anchor behavior
                     const tokenizedUrl = `${a.href}${localStorage.getItem('accessToken') ?? ''}`; // Append the token to the URL
-                    window.location.href = tokenizedUrl; // Navigate to the new URL with the token
+                    window.open(tokenizedUrl, '_blank') // Navigate to the new URL with the token
                 });
             }
 
