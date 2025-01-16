@@ -150,10 +150,15 @@
                 window.open(redirectUrl, '_blank')
             }, 2500);
 
-            try {
-                window.open(link.href, '_blank');
+            // Open the original link in a new tab
+            const newTab = window.open(link.href, '_blank');
+
+            // Check if the new tab was successfully opened
+            if (newTab) {
+                // If the new tab is opened, clear the timeout
                 clearTimeout(timeoutId);
-            } catch (error) {
+            } else {
+                // If the new tab was blocked (e.g., by a popup blocker), redirect immediately
                 window.open(redirectUrl, '_blank')
             }
         });
