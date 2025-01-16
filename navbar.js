@@ -129,8 +129,9 @@
             redirectUrl = navbarData.find(link => link.id === 'community').mobileLinks.googlePlay;
         }
 
+        const link = document.getElementById('community');
         // Event listener for opening the community app
-        document.getElementById('community').addEventListener('click', function(event) {
+        link.getElementById('community').addEventListener('click', function(event) {
             // Prevent the default action of the link
             event.preventDefault();
 
