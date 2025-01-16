@@ -2,11 +2,13 @@
 (function() {
     const navbarData = [
       {
+        id: 'suite-manager',
         href: "https://suite.frontsteps.com/",
         text: "Suite Manager",
         icon: "https://oliverarias12.github.io/test-cdn/icons/suite-manager-icon.svg",
       },
       {
+        id: 'community',
         href: "https://app.frontsteps.com",
         mobileLinks: {
             app: 'com.everapps.evercondo.residents://',
@@ -17,21 +19,25 @@
         icon: "https://oliverarias12.github.io/test-cdn/icons/community-icon.svg",
       },
       {
+        id: 'caliber',
         href: "frontstepscaliber://",
         text: "Caliber",
         icon: "https://oliverarias12.github.io/test-cdn/icons/caliber-icon.svg",
       },
       {
+        id: 'payments',
         href: "https://fspay-dashboard.frontsteps.com/",
         text: "Payments",
         icon: "https://oliverarias12.github.io/test-cdn/icons/payments-icon.svg",
       },
       {
+        id: 'dwelling',
         href: "https://community.dwellinglive.com/",
         text: "Dwelling",
         icon: "https://oliverarias12.github.io/test-cdn/icons/dwelling-icon.svg",
       },
       {
+        id: 'frontsteps',
         href: "https://frontsteps.com/frontsteps-partners-integrations/",
         text: "Verified Ambassadors",
         icon: "https://oliverarias12.github.io/test-cdn/icons/verified-ambassadors-icon.svg",
@@ -44,6 +50,7 @@
 
         navbarData.forEach(link => {
             const a = document.createElement('a');
+            a.id = link.id;
             a.href = link.href;
             a.target = '_blank';
 
@@ -110,4 +117,38 @@
             navbarElement.classList.add('hidden'); // Hide the navbar
         }
     });
+
+    if (isMobile()) {
+        const redirectUrl = '';
+        if (/iPad|iPhone|iPod/.test(userAgent)) {
+            // iOS device detected, redirect to App Store
+            redirectUrl = navbarData.find(link => link.id === 'community').mobileLinks.appStore;
+        } else if (/android/i.test(userAgent)) {
+            // Android device detected, redirect to Google Play
+            redirectUrl = navbarData.find(link => link.id === 'community').mobileLinks.googlePlay;
+        }
+
+        // Event listener for opening the community app
+        document.getElementById('community').addEventListener('click', function(event) {
+            // Prevent the default action of the link
+            event.preventDefault();
+
+            // Start a timer to redirect after a certain duration
+            const timeoutId = setTimeout(function() {
+                window.location.href = redirectUrl; // Redirect to another URL
+            }, 2500);
+
+            // Open the original link in a new tab
+            const newTab = window.open(link.href, '_blank');
+
+            // Check if the new tab was successfully opened
+            if (newTab) {
+                // If the new tab is opened, clear the timeout
+                clearTimeout(timeoutId);
+            } else {
+                // If the new tab was blocked (e.g., by a popup blocker), redirect immediately
+                window.location.href = redirectUrl;
+            }
+        });
+    }
 })();
