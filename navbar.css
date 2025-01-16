@@ -35,6 +35,7 @@ body {
     margin-right: 8px; /* Space between icon and text */
     height: 20px;
     width: 20px;
+    color: #A9C2D6
 }
 
 .navbar a span {
