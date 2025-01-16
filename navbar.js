@@ -119,7 +119,7 @@
     });
 
     if (isMobile()) {
-        const redirectUrl = '';
+        let redirectUrl = '';
         const userAgent = navigator.userAgent || navigator.vendor || window.opera;
         if (/iPad|iPhone|iPod/.test(userAgent)) {
             // iOS device detected, redirect to App Store
