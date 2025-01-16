@@ -52,7 +52,6 @@
             const a = document.createElement('a');
             a.id = link.id;
             a.href = link.href;
-            a.target = '_blank';
 
             // Create an icon element
             const icon = document.createElement('img');
@@ -77,7 +76,13 @@
                 a.appendChild(openInIcon);
 
                 a.href = link.mobileLinks ? link.mobileLinks.app : link.href;
-            } else {
+            }
+
+            // Append the icon and text to the anchor
+            a.appendChild(icon);
+            a.appendChild(linkName);
+
+            if (!(isMobile() && link.id === 'community')) {
                 // Add click event to append the access token
                 a.addEventListener('click', (event) => {
                     event.preventDefault(); // Prevent the default anchor behavior
@@ -85,10 +90,6 @@
                     window.open(tokenizedUrl, '_blank') // Navigate to the new URL with the token
                 });
             }
-
-            // Append the icon and text to the anchor
-            a.appendChild(icon);
-            a.appendChild(linkName);
 
             navbar.appendChild(a);
         });
