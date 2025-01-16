@@ -73,6 +73,8 @@
                 const nav = document.getElementById('navbar');
                 nav.style.width = '300px';
                 nav.style.height = '320px';
+                nav.style.borderTopRightRadius = '12px';
+                nav.style.borderTopLeftRadius = '12px';
                 a.appendChild(openInIcon);
 
                 a.href = link.mobileLinks ? link.mobileLinks.app : link.href;
