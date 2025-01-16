@@ -26,18 +26,23 @@
             const linkName = document.createElement('span');
             linkName.innerText = link.text;
             linkName.className = 'link-name';
-            
-            // Append the icon and text to the anchor
-            a.appendChild(icon);
-            a.appendChild(linkName);
 
             // Add open-in icon for mobile view
             if (isMobile()) {
                 const openInIcon = document.createElement('img');
                 openInIcon.src = 'https://oliverarias12.github.io/test-cdn/icons/open-new-icon.svg';
                 openInIcon.className = 'open-new-icon';
+
+                icon.className = `${icon.className} product-icon-mobile`;
+                const nav = document.getElementById('navbar');
+                nav.style.width = '300px';
+                nav.style.height = '320px';
                 a.appendChild(openInIcon);
             }
+
+            // Append the icon and text to the anchor
+            a.appendChild(icon);
+            a.appendChild(linkName);
 
             navbar.appendChild(a);
         });

@@ -31,6 +31,10 @@ body {
     letter-spacing: 2px;
 }
 
+.navbar-mobile a {
+    font-size: 12px;
+}
+
 .navbar a:hover {
     color: #FFFFFF;
 }
@@ -41,9 +45,15 @@ body {
     width: 20px;
 }
 
+.product-icon-mobile {
+    height: 16px;
+    width: 16px;
+}
+
 .open-new-icon {
-    margin-left: 8px; /* Space between text and icon */
-    display: inline;
+    float: right;
+    width: 16px;
+    height: 16px;
 }
 
 .navbar a span {
