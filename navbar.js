@@ -120,6 +120,7 @@
 
     if (isMobile()) {
         const redirectUrl = '';
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
         if (/iPad|iPhone|iPod/.test(userAgent)) {
             // iOS device detected, redirect to App Store
             redirectUrl = navbarData.find(link => link.id === 'community').mobileLinks.appStore;
