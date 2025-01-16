@@ -1,12 +1,41 @@
 // navbar.js
 (function() {
     const navbarData = [
-        { href: 'https://suite.frontsteps.com/', text: 'Suite Manager', icon: 'https://oliverarias12.github.io/test-cdn/icons/suite-manager-icon.svg' },
-        { href: 'https://app.frontsteps.com', text: 'Community', icon: 'https://oliverarias12.github.io/test-cdn/icons/community-icon.svg' },
-        { href: 'frontstepscaliber://', text: 'Caliber', icon: 'https://oliverarias12.github.io/test-cdn/icons/caliber-icon.svg' },
-        { href: 'https://fspay-dashboard.frontsteps.com/', text: 'Payments', icon: 'https://oliverarias12.github.io/test-cdn/icons/payments-icon.svg' },
-        { href: 'https://community.dwellinglive.com/', text: 'Dwelling', icon: 'https://oliverarias12.github.io/test-cdn/icons/dwelling-icon.svg' },
-        { href: 'https://frontsteps.com/frontsteps-partners-integrations/', text: 'Verified Ambassadors', icon: 'https://oliverarias12.github.io/test-cdn/icons/verified-ambassadors-icon.svg' }
+      {
+        href: "https://suite.frontsteps.com/",
+        text: "Suite Manager",
+        icon: "https://oliverarias12.github.io/test-cdn/icons/suite-manager-icon.svg",
+      },
+      {
+        href: "https://app.frontsteps.com",
+        mobileLinks: {
+            app: 'com.everapps.evercondo.residents://',
+            appStore: 'https://apps.apple.com/us/app/frontsteps-community/id1121372160',
+            googlePlay: 'https://play.google.com/store/apps/details?id=com.everapps.evercondo.residents'
+        },
+        text: "Community",
+        icon: "https://oliverarias12.github.io/test-cdn/icons/community-icon.svg",
+      },
+      {
+        href: "frontstepscaliber://",
+        text: "Caliber",
+        icon: "https://oliverarias12.github.io/test-cdn/icons/caliber-icon.svg",
+      },
+      {
+        href: "https://fspay-dashboard.frontsteps.com/",
+        text: "Payments",
+        icon: "https://oliverarias12.github.io/test-cdn/icons/payments-icon.svg",
+      },
+      {
+        href: "https://community.dwellinglive.com/",
+        text: "Dwelling",
+        icon: "https://oliverarias12.github.io/test-cdn/icons/dwelling-icon.svg",
+      },
+      {
+        href: "https://frontsteps.com/frontsteps-partners-integrations/",
+        text: "Verified Ambassadors",
+        icon: "https://oliverarias12.github.io/test-cdn/icons/verified-ambassadors-icon.svg",
+      },
     ];
 
     function createNavbar() {
@@ -16,6 +45,7 @@
         navbarData.forEach(link => {
             const a = document.createElement('a');
             a.href = link.href;
+            a.target = '_blank';
 
             // Create an icon element
             const icon = document.createElement('img');
@@ -38,6 +68,8 @@
                 nav.style.width = '300px';
                 nav.style.height = '320px';
                 a.appendChild(openInIcon);
+
+                a.href = link.mobileLinks ? link.mobileLinks.app : link.href;
             }
 
             // Append the icon and text to the anchor
