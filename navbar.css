@@ -33,13 +33,14 @@ body {
 
 .link-name {
     color: #A9C2D6;
+    position: absolute;
 }
 
 .navbar-mobile a {
     font-size: 12px;
 }
 
-.navbar a:hover {
+.link-name:hover {
     color: #FFFFFF;
 }
 
@@ -58,10 +59,6 @@ body {
     float: right;
     width: 16px;
     height: 16px;
-}
-
-.navbar a span {
-    position: absolute;
 }
 
 .hidden {
