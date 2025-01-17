@@ -71,10 +71,10 @@
 
                 icon.className = `${icon.className} product-icon-mobile`;
                 const nav = document.getElementById('navbar');
-                nav.style.width = '300px';
-                nav.style.height = '320px';
-                nav.style.borderTopRightRadius = '12px';
-                nav.style.borderTopLeftRadius = '12px';
+                nav?.style.width = '300px';
+                nav?.style.height = '320px';
+                nav?.style.borderTopRightRadius = '12px';
+                nav?.style.borderTopLeftRadius = '12px';
                 a.appendChild(openInIcon);
 
                 a.href = link.mobileLinks ? link.mobileLinks.app : link.href;
@@ -107,24 +107,24 @@
     }
 
     // Append the navbar to the specified element
-    document.getElementById('navbar').appendChild(createNavbar());
+    document.getElementById('navbar')?.appendChild(createNavbar());
 
     // Toggle navbar visibility
     const toggleButton = document.getElementById('navbar-toggle');
-    toggleButton.addEventListener('click', (event) => {
+    toggleButton?.addEventListener('click', (event) => {
         event.stopPropagation(); // Prevent the click event from bubbling up
         const navbarElement = document.getElementById('navbar');
-        navbarElement.classList.toggle('hidden');
+        navbarElement?.classList.toggle('hidden');
     });
 
     // Dismiss navbar when clicking outside of it
     document.addEventListener('click', (event) => {
         const navbarElement = document.getElementById('navbar');
-        const isClickInsideNavbar = navbarElement.contains(event.target);
-        const isClickOnToggleButton = toggleButton.contains(event.target);
+        const isClickInsideNavbar = navbarElement?.contains(event.target);
+        const isClickOnToggleButton = toggleButton?.contains(event.target);
 
         if (!isClickInsideNavbar && !isClickOnToggleButton) {
-            navbarElement.classList.add('hidden'); // Hide the navbar
+            navbarElement?.classList.add('hidden'); // Hide the navbar
         }
     });
 
@@ -141,7 +141,7 @@
 
         const link = document.getElementById('community');
         // Event listener for opening the community app
-        link.addEventListener('click', function(event) {
+        link?.addEventListener('click', function(event) {
             // Prevent the default action of the link
             event.preventDefault();
 
@@ -151,7 +151,7 @@
             }, 2500);
 
             // Open the original link in a new tab
-            const newTab = window.open(link.href, '_blank');
+            const newTab = window.open(link?.href, '_blank');
 
             // Check if the new tab was successfully opened
             if (newTab) {
