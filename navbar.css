@@ -31,6 +31,10 @@ body {
     letter-spacing: 2px;
 }
 
+.link-name {
+    color: #A9C2D6;
+}
+
 .navbar-mobile a {
     font-size: 12px;
 }

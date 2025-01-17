@@ -37,7 +37,7 @@
         icon: "https://oliverarias12.github.io/test-cdn/icons/dwelling-icon.svg",
       },
       {
-        id: 'frontsteps',
+        id: 'verifiedAmbassadors',
         href: "https://frontsteps.com/frontsteps-partners-integrations/",
         text: "Verified Ambassadors",
         icon: "https://oliverarias12.github.io/test-cdn/icons/verified-ambassadors-icon.svg",
@@ -84,7 +84,7 @@
             a.appendChild(icon);
             a.appendChild(linkName);
 
-            if (!(isMobile() && link.id === 'community')) {
+            if (!(isMobile() && link.id === 'community') && link.id !== 'verifiedAmbassadors') {
                 // Add click event to append the access token
                 a.addEventListener('click', (event) => {
                     event.preventDefault(); // Prevent the default anchor behavior
