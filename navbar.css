@@ -3,7 +3,7 @@ body {
     font-family: 'Heebo', sans-serif;
 }
 
-#navbar {
+#global-navbar {
     position: absolute;
     background-color: #15212F;
     border-bottom-left-radius: 12px;
@@ -14,12 +14,12 @@ body {
     height: 350px;
 }
 
-.navbar {
+.global-navbar {
     display: flex;
     flex-direction: column; /* Stack items vertically */
 }
 
-.navbar a {
+.global-navbar a {
     color: #A9C2D6;
     font-weight: 700;
     font-size: 13px;
@@ -65,7 +65,7 @@ body {
     display: none; /* Hide the navbar by default */
 }
 
-#navbar-toggle {
+#global-navbar-toggle {
     background-color: #15212F;
     color: white;
     border: none;

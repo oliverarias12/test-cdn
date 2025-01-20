@@ -37,7 +37,7 @@
         icon: "https://oliverarias12.github.io/test-cdn/icons/dwelling-icon.svg",
       },
       {
-        id: 'verifiedAmbassadors',
+        id: 'verified-ambassadors',
         href: "https://frontsteps.com/frontsteps-partners-integrations/",
         text: "Verified Ambassadors",
         icon: "https://oliverarias12.github.io/test-cdn/icons/verified-ambassadors-icon.svg",
@@ -46,7 +46,7 @@
 
     function createNavbar() {
         const navbar = document.createElement('div');
-        navbar.className = 'navbar';
+        navbar.className = 'global-navbar';
 
         navbarData.forEach(link => {
             const a = document.createElement('a');
@@ -70,7 +70,7 @@
                 openInIcon.className = 'open-new-icon';
 
                 icon.className = `${icon.className} product-icon-mobile`;
-                const nav = document.getElementById('navbar');
+                const nav = document.getElementById('global-navbar');
                 nav.style.width = '300px';
                 nav.style.height = '320px';
                 nav.style.borderTopRightRadius = '12px';
@@ -84,7 +84,7 @@
             a.appendChild(icon);
             a.appendChild(linkName);
 
-            if (!(isMobile() && link.id === 'community') && link.id !== 'verifiedAmbassadors') {
+            if (!(isMobile() && link.id === 'community') && link.id !== 'verified-ambassadors' && link.id !== 'suite-manager') {
                 // Add click event to append the access token
                 a.addEventListener('click', (event) => {
                     event.preventDefault(); // Prevent the default anchor behavior
@@ -107,19 +107,19 @@
     }
 
     // Append the navbar to the specified element
-    document.getElementById('navbar').appendChild(createNavbar());
+    document.getElementById('global-navbar').appendChild(createNavbar());
 
     // Toggle navbar visibility
-    const toggleButton = document.getElementById('navbar-toggle');
+    const toggleButton = document.getElementById('global-navbar-toggle');
     toggleButton.addEventListener('click', (event) => {
         event.stopPropagation(); // Prevent the click event from bubbling up
-        const navbarElement = document.getElementById('navbar');
+        const navbarElement = document.getElementById('global-navbar');
         navbarElement.classList.toggle('hidden');
     });
 
     // Dismiss navbar when clicking outside of it
     document.addEventListener('click', (event) => {
-        const navbarElement = document.getElementById('navbar');
+        const navbarElement = document.getElementById('global-navbar');
         const isClickInsideNavbar = navbarElement.contains(event.target);
         const isClickOnToggleButton = toggleButton.contains(event.target);
 
