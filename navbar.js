@@ -52,6 +52,7 @@
             const a = document.createElement('a');
             a.id = link.id;
             a.href = link.href;
+            a.target = '_blank';
 
             // Create an icon element
             const icon = document.createElement('img');
