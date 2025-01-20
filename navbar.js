@@ -156,26 +156,18 @@
     link.addEventListener("click", function (event) {
       // Prevent the default action of the link
       event.preventDefault();
+      // Attempt to open the app
+      const appUrl = navbarData.find((link) => link.id === "community")
+        .mobileLinks.app;
 
-        // Attempt to open the app
-        const appUrl = navbarData.find((link) => link.id === "community").mobileLinks.app;
-        // Start a timer to redirect after a certain duration
-        const timeoutId = setTimeout(function() {
-            // If the app doesn't open, redirect to the appropriate store
-            window.location.href = redirectUrl;
-        }, 2500); // Wait for 2.5 seconds before redirecting
+      // Open the app link
+      window.open(appUrl, "_blank");
 
-        // Open the app link
-        const newTab = window.open(appUrl, '_blank');
-
-        // Check if the new tab was successfully opened
-        if (newTab) {
-            // If the new tab is opened, clear the timeout
-            clearTimeout(timeoutId);
-        } else {
-            // If the new tab was blocked (e.g., by a popup blocker), redirect immediately
-            window.location.href = redirectUrl;
-        }
+      // Start a timer to redirect after a certain duration
+      setTimeout(function () {
+        // If the app doesn't open, redirect to the appropriate store
+        window.location.href = redirectUrl;
+      }, 2000); // Wait for 2 seconds before redirecting
     });
   }
 })();
