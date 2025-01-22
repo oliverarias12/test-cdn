@@ -1,173 +1,67 @@
-// navbar.js
-(function () {
-  const navbarData = [
-    {
-      id: "suite-manager",
-      href: "https://suite.frontsteps.com/",
-      text: "Suite Manager",
-      icon: "https://oliverarias12.github.io/test-cdn/icons/suite-manager-icon.svg",
-    },
-    {
-      id: "community",
-      href: "https://app.frontsteps.com/auth/frontsteps_auth/callback?token=",
-      mobileLinks: {
-        app: "com.everapps.evercondo.residents://",
-        appStore:
-          "https://apps.apple.com/us/app/frontsteps-community/id1121372160",
-        googlePlay:
-          "https://play.google.com/store/apps/details?id=com.everapps.evercondo.residents",
-      },
-      text: "Community",
-      icon: "https://oliverarias12.github.io/test-cdn/icons/community-icon.svg",
-    },
-    {
-      id: "caliber",
-      href: "frontstepscaliber://?token=",
-      text: "Caliber",
-      icon: "https://oliverarias12.github.io/test-cdn/icons/caliber-icon.svg",
-    },
-    {
-      id: "payments",
-      href: "https://fspay-dashboard.frontsteps.com/?accessToken=",
-      text: "Payments",
-      icon: "https://oliverarias12.github.io/test-cdn/icons/payments-icon.svg",
-    },
-    {
-      id: "dwelling",
-      href: "https://community.dwellinglive.com/login.aspx?smToken=",
-      text: "Dwelling",
-      icon: "https://oliverarias12.github.io/test-cdn/icons/dwelling-icon.svg",
-    },
-    {
-      id: "verified-ambassadors",
-      href: "https://frontsteps.com/frontsteps-partners-integrations/",
-      text: "Verified Ambassadors",
-      icon: "https://oliverarias12.github.io/test-cdn/icons/verified-ambassadors-icon.svg",
-    },
-  ];
-
-  function createNavbar() {
-    const navbar = document.createElement("div");
-    navbar.className = "global-navbar";
-
-    navbarData.forEach((link) => {
-      const a = document.createElement("a");
-      a.id = link.id;
-      a.href = link.href;
-      a.target = "_blank";
-
-      // Create an icon element
-      const icon = document.createElement("img");
-      icon.src = link.icon;
-      icon.className = "product-icon";
-
-      // Create a text node
-      const linkName = document.createElement("span");
-      linkName.innerText = link.text;
-      linkName.className = "link-name";
-
-      // Add open-in icon for mobile view
-      if (isMobile()) {
-        const openInIcon = document.createElement("img");
-        openInIcon.src =
-          "https://oliverarias12.github.io/test-cdn/icons/open-new-icon.svg";
-        openInIcon.className = "open-new-icon";
-
-        icon.className = `${icon.className} product-icon-mobile`;
-        const nav = document.getElementById("global-navbar");
-        nav.style.width = "300px";
-        nav.style.height = "320px";
-        nav.style.borderTopRightRadius = "12px";
-        nav.style.borderTopLeftRadius = "12px";
-        a.appendChild(openInIcon);
-
-        a.href = link.mobileLinks ? link.mobileLinks.app : link.href;
-      }
-
-      // Append the icon and text to the anchor
-      a.appendChild(icon);
-      a.appendChild(linkName);
-
-      if (
-        !(isMobile() && link.id === "community") &&
-        link.id !== "verified-ambassadors" &&
-        link.id !== "suite-manager"
-      ) {
-        // Add click event to append the access token
-        a.addEventListener("click", (event) => {
-          event.preventDefault(); // Prevent the default anchor behavior
-          const tokenizedUrl = `${a.href}${
-            localStorage.getItem("accessToken") ?? ""
-          }`; // Append the token to the URL
-          window.open(tokenizedUrl, "_blank"); // Navigate to the new URL with the token
-        });
-      }
-
-      navbar.appendChild(a);
-    });
-
-    return navbar;
-  }
-
-  function isMobile() {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-    // Check for mobile devices
-    return /android|iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-  }
-
-  // Append the navbar to the specified element
-  document.getElementById("global-navbar").appendChild(createNavbar());
-
-  // Toggle navbar visibility
-  const toggleButton = document.getElementById("global-navbar-toggle");
-  toggleButton.addEventListener("click", (event) => {
-    event.stopPropagation(); // Prevent the click event from bubbling up
-    const navbarElement = document.getElementById("global-navbar");
-    navbarElement.classList.toggle("hidden");
-  });
-
-  // Dismiss navbar when clicking outside of it
-  document.addEventListener("click", (event) => {
-    const navbarElement = document.getElementById("global-navbar");
-    const isClickInsideNavbar = navbarElement.contains(event.target);
-    const isClickOnToggleButton = toggleButton.contains(event.target);
-
-    if (!isClickInsideNavbar && !isClickOnToggleButton) {
-      navbarElement.classList.add("hidden"); // Hide the navbar
-    }
-  });
-
-  if (isMobile()) {
-    let redirectUrl = "";
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    if (/iPad|iPhone|iPod/.test(userAgent)) {
-      // iOS device detected, redirect to App Store
-      redirectUrl = navbarData.find((link) => link.id === "community")
-        .mobileLinks.appStore;
-    } else if (/android/i.test(userAgent)) {
-      // Android device detected, redirect to Google Play
-      redirectUrl = navbarData.find((link) => link.id === "community")
-        .mobileLinks.googlePlay;
-    }
-
-    const link = document.getElementById("community");
-    // Event listener for opening the community app
-    link.addEventListener("click", function (event) {
-      // Prevent the default action of the link
-      event.preventDefault();
-      // Attempt to open the app
-      const appUrl = navbarData.find((link) => link.id === "community")
-        .mobileLinks.app;
-
-      // Open the app link
-      window.open(appUrl, "_blank");
-
-      // Start a timer to redirect after a certain duration
-      setTimeout(function () {
-        // If the app doesn't open, redirect to the appropriate store
-        window.location.href = redirectUrl;
-      }, 2000); // Wait for 2 seconds before redirecting
-    });
-  }
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
 })();
+var GlobalNav = /** @class */ (function (_super) {
+    __extends(GlobalNav, _super);
+    function GlobalNav() {
+        var _this = Reflect.construct(HTMLElement, [], new.target);
+        _this.attachShadow({ mode: 'open' });
+        return _this;
+    }
+    GlobalNav.prototype.connectedCallback = function () {
+        this.render();
+    };
+    Object.defineProperty(GlobalNav.prototype, "links", {
+        get: function () {
+            var linksAttr = this.getAttribute('links');
+            return linksAttr ? JSON.parse(linksAttr) : [];
+        },
+        enumerable: false,
+        configurable: true
+    });
+    GlobalNav.prototype.toggleMenu = function () {
+        var _a;
+        var menu = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('.menu-popover');
+        if (menu) {
+            menu.classList.toggle('invisible');
+        }
+    };
+    GlobalNav.prototype.render = function () {
+        var _this = this;
+        var _a;
+        if (!this.shadowRoot) {
+            return;
+        }
+        this.shadowRoot.innerHTML = "\n        <style>\n          button.menu-button {\n            height: 64px;\n            width: 64px;\n            background-color: #243141;\n            color: white;\n            padding: 1rem;\n            border: none;\n            cursor: pointer;\n            font-size: 16px;\n          }\n  \n          .menu-popover {\n            position: fixed;\n            background-color: #243141;\n            border-radius: 8px;\n            box-shadow: 0px 4px 16px 0px #00000073;\n            padding: 1rem;\n            z-index: 10000000;\n            min-width: 150px;\n            height: fit-content;\n            display: block;\n          }\n  \n          .invisible {\n            display: none;\n          }\n  \n          .menu-popover a {\n            display: block;\n            margin: 0.5rem 0;\n            color: #A9C2D6;\n            text-decoration: none;\n          }\n  \n          .menu-popover a:hover {\n            text-decoration: underline;\n          }\n        </style>\n        <button class=\"menu-button\">\u2630</button>\n        <div class=\"menu-popover invisible\">\n          ".concat(this.links.map(function (link) { return "<a href=\"".concat(link.url, "\">").concat(link.label, "</a>"); }).join(''), "\n        </div>\n      ");
+        // Add event listener to the menu button
+        var menuButton = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('.menu-button');
+        if (!menuButton) {
+            console.log("no menu button");
+            return;
+        }
+        menuButton === null || menuButton === void 0 ? void 0 : menuButton.addEventListener('click', function () { return _this.toggleMenu(); });
+        // Close the menu when clicking outside of it
+        // document.addEventListener('click', (event) => {
+        //   const menu = this.shadowRoot?.querySelector('.menu-popover') as HTMLElement;
+        //   if (menu && !this.shadowRoot?.contains(event.target as Node)) {
+        //     if (menu.classList.contains('invisible')) {
+        //       menu.classList.add('invisible');
+        //     }
+        //   }
+        // });
+    };
+    return GlobalNav;
+}(HTMLElement));
+customElements.define('global-nav', GlobalNav);
