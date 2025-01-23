@@ -32,6 +32,7 @@ var GlobalNav = /** @class */ (function (_super) {
         get: function () {
             var linksAttr = this.getAttribute('links');
             var result = linksAttr ? JSON.parse(linksAttr) : [];
+            console.log(result);
             result.forEach(function (element) {
                 switch (element.label.toLocaleLowerCase()) {
                     case 'suite manager':
