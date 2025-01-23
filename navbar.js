@@ -31,6 +31,7 @@ var GlobalNav = /** @class */ (function (_super) {
     Object.defineProperty(GlobalNav.prototype, "links", {
         get: function () {
             var linksAttr = this.getAttribute('links');
+            console.log(linksAttr);
             var result = linksAttr ? JSON.parse(linksAttr) : [];
             console.log(result);
             result.forEach(function (element) {
