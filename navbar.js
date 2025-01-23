@@ -18,24 +18,85 @@ var GlobalNav = /** @class */ (function (_super) {
     function GlobalNav() {
         var _this = Reflect.construct(HTMLElement, [], new.target);
         _this.attachShadow({ mode: 'open' });
+        _this.handleClickOutside = _this.handleClickOutside.bind(_this); // Bind the method to the class context
         return _this;
     }
     GlobalNav.prototype.connectedCallback = function () {
         this.render();
+        document.addEventListener('click', this.handleClickOutside); // Add event listener for clicks outside
+    };
+    GlobalNav.prototype.disconnectedCallback = function () {
+        document.removeEventListener('click', this.handleClickOutside); // Clean up the event listener
     };
     Object.defineProperty(GlobalNav.prototype, "links", {
         get: function () {
             var linksAttr = this.getAttribute('links');
-            return linksAttr ? JSON.parse(linksAttr) : [];
+            var result = linksAttr ? JSON.parse(linksAttr) : [];
+            result.forEach(function (element) {
+                switch (element.label) {
+                    case 'Suite Manager':
+                        element.icon = 'https://oliverarias12.github.io/test-cdn/icons/suite-manager-icon.svg';
+                        break;
+                    case 'Community':
+                        element.icon = 'https://oliverarias12.github.io/test-cdn/icons/community-icon.svg';
+                        break;
+                    case 'Caliber':
+                        element.icon = 'https://oliverarias12.github.io/test-cdn/icons/caliber-icon.svg';
+                        break;
+                    case 'Payments':
+                        element.icon = 'https://oliverarias12.github.io/test-cdn/icons/payments-icon.svg';
+                        break;
+                    case 'Dwelling':
+                        element.icon = 'https://oliverarias12.github.io/test-cdn/icons/dwelling-icon.svg';
+                        break;
+                    case 'Verified Ambassadors':
+                        element.icon = 'https://oliverarias12.github.io/test-cdn/icons/verified-ambassadors-icon.svg';
+                        break;
+                    default:
+                        break;
+                }
+            });
+            return result;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(GlobalNav.prototype, "isMobile", {
+        get: function () {
+            var isMobileAttr = this.getAttribute('isMobile');
+            return isMobileAttr === 'true';
         },
         enumerable: false,
         configurable: true
     });
     GlobalNav.prototype.toggleMenu = function () {
         var _a;
-        var menu = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('.menu-popover');
+        var menu = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('.global-nav-menu-popover');
         if (menu) {
             menu.classList.toggle('invisible');
+        }
+    };
+    GlobalNav.prototype.handleClickOutside = function (event) {
+        var _a, _b;
+        var menu = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('.global-nav-menu-popover');
+        var menuButton = (_b = this.shadowRoot) === null || _b === void 0 ? void 0 : _b.querySelector('.global-nav-menu-button');
+        // Check if the click was outside the menu and the button
+        if (menu && menuButton) {
+            var path = event.composedPath(); // Get the event path
+            var isClickInsideMenu = false;
+            var isClickInsideButton = false;
+            for (var _i = 0, path_1 = path; _i < path_1.length; _i++) {
+                var node = path_1[_i];
+                if (node === menu) {
+                    isClickInsideMenu = true;
+                }
+                if (node === menuButton) {
+                    isClickInsideButton = true;
+                }
+            }
+            if (!isClickInsideMenu && !isClickInsideButton) {
+                menu.classList.add('invisible'); // Hide the menu
+            }
         }
     };
     GlobalNav.prototype.render = function () {
@@ -44,23 +105,30 @@ var GlobalNav = /** @class */ (function (_super) {
         if (!this.shadowRoot) {
             return;
         }
-        this.shadowRoot.innerHTML = "\n        <style>\n          button.menu-button {\n            height: 64px;\n            width: 64px;\n            background-color: #243141;\n            color: white;\n            padding: 1rem;\n            border: none;\n            cursor: pointer;\n            font-size: 16px;\n          }\n  \n          .menu-popover {\n            position: fixed;\n            background-color: #243141;\n            border-radius: 8px;\n            box-shadow: 0px 4px 16px 0px #00000073;\n            padding: 1rem;\n            z-index: 10000000;\n            min-width: 150px;\n            height: fit-content;\n            display: block;\n          }\n  \n          .invisible {\n            display: none;\n          }\n  \n          .menu-popover a {\n            display: block;\n            margin: 0.5rem 0;\n            color: #A9C2D6;\n            text-decoration: none;\n          }\n  \n          .menu-popover a:hover {\n            text-decoration: underline;\n          }\n        </style>\n        <button class=\"menu-button\">\u2630</button>\n        <div class=\"menu-popover invisible\">\n          ".concat(this.links.map(function (link) { return "<a href=\"".concat(link.url, "\">").concat(link.label, "</a>"); }).join(''), "\n        </div>\n      ");
+        this.shadowRoot.innerHTML = "\n        <style>\n          button.global-nav-menu-button {\n            background-color: #15212F;\n            color: white;\n            border: none;\n            padding: 20px 20px;\n            cursor: pointer;\n            border-right: 2px solid #15212F;\n            width: 60px;\n            height: 64px;\n            font-size: 16px;\n          }\n  \n          .global-nav-menu-popover {\n            display: flex;\n            flex-direction: column;\n            background-color: #15212F;\n            border-bottom-left-radius: 12px;\n            border-bottom-right-radius: 12px;\n            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);\n            z-index: 1000; /* Ensure it appears above other elements */\n            width: 300px;\n            height: fit-content;\n          }\n\n          .mobile-popover {\n            border-top-left-radius: 12px;\n            border-top-right-radius: 12px;\n          }\n  \n          .invisible {\n            display: none;\n          }\n  \n          .global-nav-menu-popover a {\n            display: flex;\n            color: #A9C2D6;\n            font-weight: 700;\n            font-size: 13px;\n            line-height: 20.56px;\n            padding: 16px 12px 16px 12px;\n            text-decoration: none;\n            text-transform: uppercase;\n            margin-left: 15px;\n            letter-spacing: 2px;\n          }\n            .global-nav-mobile a {\n                font-size: 12px;\n            }\n  \n          .global-nav-menu-popover a:hover {\n            color: #FFFFFF;\n          }\n\n            .product-icon {\n                margin-right: 8px; /* Space between icon and text */\n                height: 20px;\n                width: 20px;\n            }\n            .product-icon-mobile {\n                height: 16px;\n                width: 16px;\n            }\n\n            .open-new-icon {\n                margin-left: auto;\n                width: 16px;\n                height: 16px;\n            }\n        </style>\n        <button class=\"global-nav-menu-button\"><img src=\"https://oliverarias12.github.io/test-cdn/icons/open-new-icon.svg\"></button>\n        <div class=\"global-nav-menu-popover invisible\">\n          ".concat(this.links.map(function (link) {
+            var _a;
+            var productIcon = '';
+            var openNewIcon = '';
+            if (_this.isMobile) {
+                productIcon = link.icon ? "<img src=\"".concat(link.icon, "\" class=\"product-icon product-icon-mobile\">") : '';
+                openNewIcon = "<img src=\"https://oliverarias12.github.io/test-cdn/icons/open-new-icon.svg\" class=\"open-new-icon\">";
+                var menu = (_a = _this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('.global-nav-menu-popover');
+                if (menu) {
+                    menu.classList.add('mobile-popover');
+                }
+            }
+            else {
+                productIcon = link.icon ? "<img src=\"".concat(link.icon, "\" class=\"product-icon\">") : '';
+            }
+            return "<a href=\"".concat(link.url, "\" target=\"_blank\">").concat(productIcon, "<span class=\"link-name\">").concat(link.label, "</span>").concat(openNewIcon, "</a>");
+        }).join(''), "\n        </div>\n      ");
         // Add event listener to the menu button
-        var menuButton = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('.menu-button');
+        var menuButton = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('.global-nav-menu-button');
         if (!menuButton) {
             console.log("no menu button");
             return;
         }
         menuButton === null || menuButton === void 0 ? void 0 : menuButton.addEventListener('click', function () { return _this.toggleMenu(); });
-        // Close the menu when clicking outside of it
-        // document.addEventListener('click', (event) => {
-        //   const menu = this.shadowRoot?.querySelector('.menu-popover') as HTMLElement;
-        //   if (menu && !this.shadowRoot?.contains(event.target as Node)) {
-        //     if (menu.classList.contains('invisible')) {
-        //       menu.classList.add('invisible');
-        //     }
-        //   }
-        // });
     };
     return GlobalNav;
 }(HTMLElement));
