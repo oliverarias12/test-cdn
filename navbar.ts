@@ -17,24 +17,24 @@ class GlobalNav extends HTMLElement {
     get links() {
         const linksAttr = this.getAttribute('links');
         let result = linksAttr ? JSON.parse(linksAttr) : [];
-        result.forEach((element: { label: any; icon: string; }) => {
-            switch (element.label) {
-                case 'Suite Manager':
+        result.forEach((element: { label: string; icon: string; url: string; }) => {
+            switch (element.label.toLocaleLowerCase()) {
+                case 'suite manager':
                     element.icon = 'https://oliverarias12.github.io/test-cdn/icons/suite-manager-icon.svg';
                     break;
-                case 'Community':
+                case 'community':
                     element.icon = 'https://oliverarias12.github.io/test-cdn/icons/community-icon.svg';
                     break;
-                case 'Caliber':
+                case 'caliber':
                     element.icon = 'https://oliverarias12.github.io/test-cdn/icons/caliber-icon.svg';
                     break;
-                case 'Payments':
+                case 'payments':
                     element.icon = 'https://oliverarias12.github.io/test-cdn/icons/payments-icon.svg';
                     break;
-                case 'Dwelling':
+                case 'dwelling':
                     element.icon = 'https://oliverarias12.github.io/test-cdn/icons/dwelling-icon.svg';
                     break;
-                case 'Verified Ambassadors':
+                case 'verified ambassadors':
                     element.icon = 'https://oliverarias12.github.io/test-cdn/icons/verified-ambassadors-icon.svg';
                     break;
                 default:
@@ -117,11 +117,6 @@ class GlobalNav extends HTMLElement {
             height: fit-content;
           }
 
-          .mobile-popover {
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-          }
-  
           .invisible {
             display: none;
           }
@@ -164,7 +159,7 @@ class GlobalNav extends HTMLElement {
         </style>
         <button class="global-nav-menu-button"><img src="https://oliverarias12.github.io/test-cdn/icons/menu-icon.svg"></button>
         <div class="global-nav-menu-popover invisible">
-          ${this.links.map((link: { url: any; label: any; icon: any; }) => {
+          ${this.links.map((link: { url: string; label: string; icon: string; }) => {
 
             var productIcon = '';
             var openNewIcon = '';
@@ -172,10 +167,6 @@ class GlobalNav extends HTMLElement {
             if (this.isMobile) {
                 productIcon = link.icon ? `<img src="${link.icon}" class="product-icon product-icon-mobile">` : '';
                 openNewIcon = `<img src="https://oliverarias12.github.io/test-cdn/icons/open-new-icon.svg" class="open-new-icon">`;
-                const menu = this.shadowRoot?.querySelector('.global-nav-menu-popover') as HTMLElement;
-                if (menu) {
-                    menu.classList.add('mobile-popover');
-                }
             } else {
                 productIcon = link.icon ? `<img src="${link.icon}" class="product-icon">` : '';
             }
