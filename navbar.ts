@@ -5,6 +5,17 @@ class GlobalNav extends HTMLElement {
         this.handleClickOutside = this.handleClickOutside.bind(this); // Bind the method to the class context
     }
 
+    static get observedAttributes() {
+        return ['links', 'isMobile'];
+    }
+
+    attributeChangedCallback(name: string, oldValue: any, newValue: any) {
+        // React to attribute changes
+        if ((name === 'links' || name === 'isMobile') && oldValue !== newValue) {
+            this.render();
+        }
+    }
+
     connectedCallback() {
         this.render();
         document.addEventListener('click', this.handleClickOutside); // Add event listener for clicks outside

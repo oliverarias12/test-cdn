@@ -21,6 +21,19 @@ var GlobalNav = /** @class */ (function (_super) {
         _this.handleClickOutside = _this.handleClickOutside.bind(_this); // Bind the method to the class context
         return _this;
     }
+    Object.defineProperty(GlobalNav, "observedAttributes", {
+        get: function () {
+            return ['links', 'isMobile'];
+        },
+        enumerable: false,
+        configurable: true
+    });
+    GlobalNav.prototype.attributeChangedCallback = function (name, oldValue, newValue) {
+        // React to attribute changes
+        if ((name === 'links' || name === 'isMobile') && oldValue !== newValue) {
+            this.render();
+        }
+    };
     GlobalNav.prototype.connectedCallback = function () {
         this.render();
         document.addEventListener('click', this.handleClickOutside); // Add event listener for clicks outside
@@ -31,9 +44,7 @@ var GlobalNav = /** @class */ (function (_super) {
     Object.defineProperty(GlobalNav.prototype, "links", {
         get: function () {
             var linksAttr = this.getAttribute('links');
-            console.log(linksAttr);
             var result = linksAttr ? JSON.parse(linksAttr) : [];
-            console.log(result);
             result.forEach(function (element) {
                 switch (element.label.toLocaleLowerCase()) {
                     case 'suite manager':
