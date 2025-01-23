@@ -157,7 +157,7 @@ class GlobalNav extends HTMLElement {
                 height: 16px;
             }
         </style>
-        <button class="global-nav-menu-button"><img src="https://oliverarias12.github.io/test-cdn/icons/open-new-icon.svg"></button>
+        <button class="global-nav-menu-button"><img src="https://oliverarias12.github.io/test-cdn/icons/menu-icon.svg"></button>
         <div class="global-nav-menu-popover invisible">
           ${this.links.map((link: { url: any; label: any; icon: any; }) => {
 
