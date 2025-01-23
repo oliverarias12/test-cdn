@@ -99,6 +99,11 @@ class GlobalNav extends HTMLElement {
             height: 64px;
             font-size: 16px;
           }
+
+          .global-nav-menu-button img {
+            width: 20px;
+            height: 20px;
+          }
   
           .global-nav-menu-popover {
             display: flex;
@@ -177,7 +182,7 @@ class GlobalNav extends HTMLElement {
 
             return `<a href="${link.url}" target="_blank">${productIcon}<span class="link-name">${link.label}</span>${openNewIcon}</a>`
 
-          }).join('')}
+        }).join('')}
         </div>
       `;
 
